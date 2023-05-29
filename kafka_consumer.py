@@ -1,39 +1,11 @@
-from confluent_kafka import Consumer
+# kafkaapp/kafka_consumer.py
 
-kafka_config = {
-    'bootstrap.servers': 'localhost:9092',  # Kafka broker addresses
-    'group.id': 'my_consumer_group',  # Consumer group ID
-}
+from kafka import KafkaConsumer
 
-consumer = Consumer(kafka_config)
+KAFKA_TOPIC = 'DeleteMovieRequested'
+consumer = KafkaConsumer(KAFKA_TOPIC)
 
-def consume_messages():
-    consumer.subscribe(['movies_topic', 'tickets_topic'])
+for message in consumer:
+    print('Received message:', message.value)
 
-    while True:
-        message = consumer.poll(timeout=1.0)
-
-        if message is None:
-            continue
-
-        if message.error():
-            print('Error: %s' % message.error())
-            continue
-
-        topic = message.topic()
-        value = message.value()
-
-        if topic == 'movies_topic':
-            process_movie_message(value)
-        elif topic == 'tickets_topic':
-            process_ticket_message(value)
-
-def process_movie_message(message):
-    # Process movie message here
-    print(f'Received movie message: {message}')
-
-def process_ticket_message(message):
-    # Process ticket message here
-    print(f'Received ticket message: {message}')
-
-consume_messages()
+consumer.close()

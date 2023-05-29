@@ -181,10 +181,3 @@ LOGGING = {
         },
     },
 }
-
-
-# Kafka Config
-KAFKA_CONFIG = {
-    'bootstrap.servers': 'localhost:9092',
-    'group.id': 'my_consumer_group',
-}

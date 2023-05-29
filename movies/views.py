@@ -8,8 +8,12 @@ from django.contrib.admin.views.decorators import staff_member_required
 from django.shortcuts import get_object_or_404
 from django.db.models import Sum
 import logging as log
+from kafka import KafkaProducer
+from kafka.errors import KafkaError
 
 logger = log.getLogger(__name__)
+KAFKA_TOPIC = 'DeleteMovieRequested'
+KAFKA_SERVER = 'localhost:9092'
 
 class MovieViewSet(viewsets.ViewSet):
     @action(detail=False, methods=['get'])
@@ -120,5 +124,27 @@ class MovieViewSetAdmin(viewsets.ViewSet):
         # Delete the movie
         movie.delete()
         logger.info('Movie Deleted!')
-        # publish msg <---
+        send_message(movie_name)
+        
         return JsonResponse({'message': f'Movie "{movie_name}" and associated tickets have been deleted successfully.'})
+
+
+def send_message(movie_name):
+    producer = KafkaProducer(bootstrap_servers=[KAFKA_SERVER])
+    response = 'Movie "{}" has been deleted.'.format(movie_name)
+    future = producer.send(KAFKA_TOPIC, bytes(response, 'utf-8'))
+
+    try:
+        record_metadata = future.get(timeout=10)
+        print('Message sent successfully!', record_metadata.topic, record_metadata.partition, record_metadata.offset)
+    except KafkaError as e:
+        print('Failed to send message to Kafka:', e)
+    finally:
+        producer.flush()
+
+'''
+Handy server commands kafka
+
+zookeeper-server-start.bat ..\..\config\zookeeper.properties
+
+kafka-server-start.bat ..\..\config\server.properties'''
