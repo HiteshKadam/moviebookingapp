@@ -1,0 +1,40 @@
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Not Found: /
+Not Found: /
+"GET / HTTP/1.1" 404 2689
+"GET / HTTP/1.1" 404 2689
+"GET /swagger/ HTTP/1.1" 200 2164
+"GET /swagger/ HTTP/1.1" 200 2164
+"GET /swagger/?format=openapi HTTP/1.1" 200 3363
+"GET /swagger/?format=openapi HTTP/1.1" 200 3363
+"GET /api/doc/ HTTP/1.1" 200 934
+"GET /api/doc/ HTTP/1.1" 200 934
+"GET /static/drf-yasg/style.css HTTP/1.1" 304 0
+"GET /static/drf-yasg/style.css HTTP/1.1" 304 0
+"GET /static/drf-yasg/insQ.min.js HTTP/1.1" 304 0
+"GET /static/drf-yasg/insQ.min.js HTTP/1.1" 304 0
+"GET /static/drf-yasg/redoc-init.js HTTP/1.1" 200 2566
+"GET /static/drf-yasg/redoc-init.js HTTP/1.1" 200 2566
+"GET /static/drf-yasg/redoc/redoc.min.js HTTP/1.1" 200 998563
+"GET /static/drf-yasg/redoc/redoc.min.js HTTP/1.1" 200 998563
+"GET /api/doc/?format=openapi HTTP/1.1" 200 3363
+"GET /api/doc/?format=openapi HTTP/1.1" 200 3363
+"GET /static/drf-yasg/redoc/redoc-logo.png HTTP/1.1" 200 4969
+"GET /static/drf-yasg/redoc/redoc-logo.png HTTP/1.1" 200 4969
+M:\PRORAMMING\FSE1 Training\Moving Booking App\moviebookingapp\moviebookingapp\settings.py changed, reloading.
+M:\PRORAMMING\FSE1 Training\Moving Booking App\moviebookingapp\moviebookingapp\settings.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+M:\PRORAMMING\FSE1 Training\Moving Booking App\moviebookingapp\moviebookingapp\settings.py changed, reloading.
+M:\PRORAMMING\FSE1 Training\Moving Booking App\moviebookingapp\moviebookingapp\settings.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+M:\PRORAMMING\FSE1 Training\Moving Booking App\moviebookingapp\moviebookingapp\settings.py changed, reloading.
+M:\PRORAMMING\FSE1 Training\Moving Booking App\moviebookingapp\moviebookingapp\settings.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+M:\PRORAMMING\FSE1 Training\Moving Booking App\moviebookingapp\moviebookingapp\settings.py changed, reloading.
+M:\PRORAMMING\FSE1 Training\Moving Booking App\moviebookingapp\moviebookingapp\settings.py changed, reloading.
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
