@@ -127,7 +127,7 @@ class MovieViewSetAdmin(viewsets.ViewSet):
         # Delete the movie
         movie.delete()
         logger.info('Movie Deleted!')
-        send_message(movie_name)
+        # send_message(movie_name)
         
         return JsonResponse({'message': f'Movie "{movie_name}" and associated tickets have been deleted successfully.'})
 

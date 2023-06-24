@@ -1,6 +1,6 @@
 from django.test import TestCase
 from django.core.exceptions import ValidationError
-from .models import Movie, Ticket
+from movies.models import Movie, Ticket
 
 class MovieModelTest(TestCase):
     def setUp(self):
