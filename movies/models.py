@@ -7,5 +7,7 @@ class Movie(models.Model):
 
 class Ticket(models.Model):
     movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
-    num_tickets = models.IntegerField()
-    seat_number = models.CharField(max_length=10)
+    num_tickets = models.PositiveIntegerField()
+    seat_number = models.CharField(max_length=10, error_messages ={
+                    "max_length":"Ensure this value has at most 10 characters."
+                    })
