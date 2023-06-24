@@ -20,7 +20,7 @@ class MovieViewSet(viewsets.ViewSet):
     def all(self, request):
         movies = Movie.objects.all()
         serializer = MovieSerializer(movies, many=True)
-        return JsonResponse(serializer.data, safe=False)
+        return JsonResponse(serializer.data, safe=False, status = 200)
 
     @action(detail=False, methods=['get'])
     def search(self, request,**kwargs):
@@ -28,7 +28,10 @@ class MovieViewSet(viewsets.ViewSet):
         movies = Movie.objects.filter(movie_name__icontains=movie_name)
         serializer = MovieSerializer(movies, many=True)
         logger.info('Movie Searched Published!')
-        return JsonResponse(serializer.data, safe=False)
+        if(serializer.data):
+            return JsonResponse(serializer.data, safe=False)
+        else:
+            return JsonResponse({'message': 'Movie does not exist.'}, status=404)
 
 class TicketViewSet(viewsets.ModelViewSet):
     queryset = Ticket.objects.all()
