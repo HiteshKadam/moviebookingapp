@@ -48,3 +48,22 @@ class TicketModelTest(TestCase):
             context.exception.message_dict['seat_number'][0],
             'Ensure this value has at most 10 characters.'
         )
+
+    def test_ticket_model_str_representation(self):
+        self.assertEqual(str(self.ticket), f"Ticket object (8)")
+
+    def test_total_tickets_available(self):
+        tickets_sold = Ticket.objects.filter(movie=self.movie).count()
+        available_tickets = self.movie.total_tickets_allotted - tickets_sold
+        self.assertEqual(self.get_total_tickets_available(), available_tickets)
+
+    def test_ticket_decrement_on_save(self):
+        initial_tickets = self.get_total_tickets_available()
+        new_ticket = Ticket(movie=self.movie, num_tickets=1, seat_number='A2')
+        new_ticket.save()
+        updated_tickets = self.get_total_tickets_available()
+        self.assertEqual(updated_tickets, initial_tickets - new_ticket.num_tickets)
+
+    def get_total_tickets_available(self):
+        tickets_sold = Ticket.objects.filter(movie=self.movie).count()
+        return self.movie.total_tickets_allotted - tickets_sold
