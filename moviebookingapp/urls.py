@@ -5,6 +5,7 @@ from django.conf.urls.static import static
 from rest_framework import permissions
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
+from django.views.generic import TemplateView
 
 api_schema_view = get_schema_view(
     openapi.Info(
@@ -24,6 +25,8 @@ urlpatterns = [
     path('api/v1.0/moviebooking/', include('accounts.urls')),
     path('swagger/', api_schema_view.with_ui('swagger', cache_timeout=0), name='swagger-ui'),
     path('api/doc/', api_schema_view.with_ui('redoc', cache_timeout=0), name='api-doc'),
+    # UI REACT
+    path('', TemplateView.as_view(template_name='index.html')),
 ]
 
 urlpatterns = urlpatterns + static(settings.MEDIA_URL,document_root = settings.MEDIA_ROOT)

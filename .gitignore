@@ -4,3 +4,4 @@ __pycache__/
 # Django Logs:
 *.log
 *.cpython
+*.pytest_cache
