@@ -53,6 +53,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'corsheaders.middleware.CorsMiddleware',
+    'moviebookingapp.middleware.SessionTimeoutMiddleware'
 ]
 
 ROOT_URLCONF = 'moviebookingapp.urls'
@@ -60,7 +61,7 @@ ROOT_URLCONF = 'moviebookingapp.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'movie-booking-ui/build')],
+        'DIRS': [],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -174,3 +175,30 @@ LOGGING = {
 
 CORS_ORIGIN_ALLOW_ALL = True
 CORS_ALLOW_CREDENTIALS = True
+
+
+# # Add the DRF authentication and permission classes
+# REST_FRAMEWORK = {
+#     'DEFAULT_AUTHENTICATION_CLASSES': [
+#         'rest_framework.authentication.SessionAuthentication',
+#         'rest_framework.authentication.TokenAuthentication',
+#     ],
+#     'DEFAULT_PERMISSION_CLASSES': [
+#         'rest_framework.permissions.IsAuthenticated',
+#     ],
+# }
+
+# Add the following configuration for static and media files
+STATIC_URL = '/static/'
+
+CORS_ALLOWED_ORIGINS = [
+    'http://localhost:3000',
+]
+
+
+# Set the session cookie age to 1 hour (in seconds)
+SESSION_COOKIE_AGE = 3600
+
+# Set the session expiration age to 1 hour (in seconds)
+SESSION_EXPIRE_SECONDS = 3600
+SESSION_EXPIRE_AFTER_LAST_ACTIVITY = True

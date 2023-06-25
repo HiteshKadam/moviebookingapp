@@ -1,7 +1,8 @@
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
+from django.http import HttpRequest
 from rest_framework import viewsets
-from rest_framework.decorators import action
+from rest_framework.decorators import action,api_view
 from rest_framework.response import Response
 from rest_framework import status
 
@@ -49,6 +50,13 @@ class UserViewSet(viewsets.ViewSet):
             return Response({'message': 'User logged in successfully'}, status=status.HTTP_200_OK)
         else:
             return Response({'message': 'Invalid username or password'}, status=status.HTTP_401_UNAUTHORIZED)
+    
+    @api_view(['GET'])
+    def check_auth(request):
+        if isinstance(request, HttpRequest) and request.user.is_authenticated:
+            return Response({'message': 'User is authenticated'}, status=status.HTTP_200_OK)
+        else:
+            return Response({'message': 'User is not authenticated'}, status=status.HTTP_401_UNAUTHORIZED)
 
     @action(detail=False, methods=['get'])
     def logout(self, request):
