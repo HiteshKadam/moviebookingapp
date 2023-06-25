@@ -1,17 +1,14 @@
 from django.http import JsonResponse
 from rest_framework import viewsets
-from rest_framework.permissions import IsAdminUser,IsAuthenticated
+from rest_framework.permissions import IsAdminUser
 from rest_framework.decorators import action
 from .models import Movie, Ticket
 from .serializers import MovieSerializer, TicketSerializer
-from django.contrib.admin.views.decorators import staff_member_required
 from django.shortcuts import get_object_or_404
 from django.db.models import Sum
 import logging as log
 from kafka import KafkaProducer
 from kafka.errors import KafkaError
-from django.contrib.auth.decorators import login_required
-from rest_framework.decorators import api_view
 
 logger = log.getLogger(__name__)
 KAFKA_TOPIC = 'DeleteMovieRequested'
