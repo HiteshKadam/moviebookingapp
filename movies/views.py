@@ -1,9 +1,9 @@
 from django.http import JsonResponse
 from rest_framework import viewsets
-from rest_framework.permissions import IsAdminUser
+from rest_framework.permissions import IsAdminUser,IsAuthenticated
 from rest_framework.decorators import action
 from .models import Movie, Ticket
-from .serializers import MovieSerializer, TicketSerializer
+from .serializers import MovieSerializer, TicketSerializer,TicketSerializerMovieName
 from django.shortcuts import get_object_or_404
 from django.db.models import Sum
 import logging as log
@@ -13,6 +13,8 @@ from kafka.errors import KafkaError
 logger = log.getLogger(__name__)
 KAFKA_TOPIC = 'DeleteMovieRequested'
 KAFKA_SERVER = 'localhost:9092'
+
+
 
 class MovieViewSet(viewsets.ViewSet):
     @action(detail=False, methods=['get'])
@@ -65,18 +67,21 @@ class TicketViewSet(viewsets.ModelViewSet):
 class TicketViewSetAdmin(viewsets.ViewSet):
     queryset = Ticket.objects.all()
     serializer_class = TicketSerializer
-    permission_classes = [IsAdminUser]  # Ensure only admin users can access this viewset
 
-    def list(self, request):
-        tickets = Ticket.objects.all()
-        serializer = TicketSerializer(tickets, many=True)
-        return JsonResponse(serializer.data, safe=False)
+    @action(detail=False, methods=['get'])
+    def list(self, request, *args, **kwargs):
+        if request.query_params['username'] == 'admin':
+            tickets = Ticket.objects.all()
+            serializer = TicketSerializerMovieName(tickets, many=True)
+            return JsonResponse({'ticket':serializer.data,'error':'' }, safe=False,status = 200)
+        else:
+            return JsonResponse({'ticket':'','error': 'Not Valid User'}, status=401)
+        
 
 
 class MovieViewSetAdmin(viewsets.ViewSet):
     queryset = Movie.objects.all()
     serializer_class = MovieSerializer
-    permission_classes = [IsAdminUser]  # Ensure only admin users can access this viewset
 
     @action(detail=False, methods=['put'])
     def update_seats_available(self, request,movie_name=None,movie_id=None):

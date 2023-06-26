@@ -4,6 +4,10 @@ from rest_framework import viewsets
 from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework import status
+from rest_framework.permissions import IsAdminUser,IsAuthenticated
+from django.http import JsonResponse
+from rest_framework.authtoken.models import Token
+from .serializers import TokenSerializer
 
 class UserViewSet(viewsets.ViewSet):
     @action(detail=False, methods=['post'])
@@ -46,7 +50,7 @@ class UserViewSet(viewsets.ViewSet):
         user = authenticate(username=username, password=password)
         if user is not None:
             login(request, user)
-            return Response({'message': 'User logged in successfully'}, status=status.HTTP_200_OK)
+            return Response({'username':username,'password':password}, status=status.HTTP_200_OK)
         else:
             return Response({'message': 'Invalid username or password'}, status=status.HTTP_401_UNAUTHORIZED)
 
@@ -54,3 +58,12 @@ class UserViewSet(viewsets.ViewSet):
     def logout(self, request):
         logout(request)
         return Response({'message': 'User logged out successfully'}, status=status.HTTP_200_OK)
+
+class AdminViewSet(viewsets.ViewSet):
+    @action(detail=False, methods=['get'])
+    def check_admin_status(self, request, *args, **kwargs):
+    # Check if the user's token is valid
+        if request.query_params['username'] == "admin":
+            return Response({'is_valid_user': True}, status=status.HTTP_200_OK)
+        else:
+            return Response({'is_valid_user': False}, status=status.HTTP_401_UNAUTHORIZED)
