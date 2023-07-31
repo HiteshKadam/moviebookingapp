@@ -1,0 +1,21 @@
+version: "3.8"
+
+services:
+  django:
+      build: .
+      container_name: moviebooking
+      command: python manage.py runserver 0.0.0.0:8000
+      volumes:
+          - .:/moviebookingapp
+      ports:
+          - "8000:8000"
+      depends_on:
+        - mongo
+      environment:
+        - DJANGO_SETTINGS_MODULE=moviebookingapp.settings
+
+  mongo:
+    image: mongo
+    container_name: moongodb
+    environment:
+    - POSTGRES_DB=moviesdb

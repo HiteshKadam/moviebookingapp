@@ -85,9 +85,11 @@ DATABASES = {
     'default': {
         'ENGINE': 'djongo',
         'NAME': 'moviesdb',
-        # 'USER':'',
-        # 'PASSWORD':'',
-        # 'HOST':'',
+        "CLIENT": {
+            "host": 'mongo',
+            "username":'',
+            "password":''
+        },
     }
 }
 
@@ -137,41 +139,41 @@ SWAGGER_SETTINGS = {
 #Settings for logs
 # settings.py
 
-LOGGING = {
-    'version': 1,
-    'disable_existing_loggers': False,
-    'handlers': {
-        'console': {
-            'class': 'logging.StreamHandler',
-        },
-        'file': {
-            'class': 'logging.FileHandler',
-            'filename': os.path.join(BASE_DIR,'logs.log'),
-        },
-    },
-    'root': {
-        'handlers': ['console', 'file'],
-        'level': 'INFO',  # Set the desired log level (e.g., INFO, DEBUG, etc.)
-        'propagate': False,
-    },
-    'loggers': {
-        '': {
-            'handlers': ['console', 'file'],
-            'level': 'INFO',  # Set the desired log level for the root logger
-            'propagate': True,
-        },
-        'django': {
-            'handlers': ['console', 'file'],
-            'level': 'INFO',  # Set the desired log level for the Django logger
-            'propagate': True,
-        },
-        'moviebookingapp': {
-            'handlers': ['console', 'file'],
-            'level': 'INFO',  # Set the desired log level for your app logger
-            'propagate': True,
-        },
-    },
-}
+# LOGGING = {
+#     'version': 1,
+#     'disable_existing_loggers': False,
+#     'handlers': {
+#         'console': {
+#             'class': 'logging.StreamHandler',
+#         },
+#         'file': {
+#             'class': 'logging.FileHandler',
+#             'filename': os.path.join(BASE_DIR,'logs.log'),
+#         },
+#     },
+#     'root': {
+#         'handlers': ['console', 'file'],
+#         'level': 'INFO',  # Set the desired log level (e.g., INFO, DEBUG, etc.)
+#         'propagate': False,
+#     },
+#     'loggers': {
+#         '': {
+#             'handlers': ['console', 'file'],
+#             'level': 'INFO',  # Set the desired log level for the root logger
+#             'propagate': True,
+#         },
+#         'django': {
+#             'handlers': ['console', 'file'],
+#             'level': 'INFO',  # Set the desired log level for the Django logger
+#             'propagate': True,
+#         },
+#         'moviebookingapp': {
+#             'handlers': ['console', 'file'],
+#             'level': 'INFO',  # Set the desired log level for your app logger
+#             'propagate': True,
+#         },
+#     },
+# }
 
 
 CORS_ORIGIN_ALLOW_ALL = True

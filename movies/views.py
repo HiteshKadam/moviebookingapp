@@ -73,6 +73,7 @@ class TicketViewSetAdmin(viewsets.ViewSet):
         if request.query_params['username'] == 'admin':
             tickets = Ticket.objects.all()
             serializer = TicketSerializerMovieName(tickets, many=True)
+            print(serializer.data)
             return JsonResponse({'ticket':serializer.data,'error':'' }, safe=False,status = 200)
         else:
             return JsonResponse({'ticket':'','error': 'Not Valid User'}, status=401)
