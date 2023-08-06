@@ -22,7 +22,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-n*tz23sp*dq-co-n#kfv@+q107sd$0@9bb7bv08dm_+10etps!'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -44,7 +44,7 @@ INSTALLED_APPS = [
     'drf_yasg',
     'corsheaders',
     'rest_framework_simplejwt',
-    'whitenoise.runserver_nostatic'
+    # 'whitenoise.runserver_nostatic'
 ]
 
 MIDDLEWARE = [
@@ -56,7 +56,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'corsheaders.middleware.CorsMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware'
+    # 'whitenoise.middleware.WhiteNoiseMiddleware'
 ]
 
 ROOT_URLCONF = 'moviebookingapp.urls'
@@ -88,8 +88,8 @@ WSGI_APPLICATION = 'moviebookingapp.wsgi.application'
 #         'ENGINE': 'djongo',
 #         'NAME': 'moviesdb',
 #         "CLIENT": {
-#             # "host": 'mongo',
-#             "host": 'mongodb://localhost:27017',
+#             "host": 'mongo',
+#             # "host": 'mongodb://localhost:27017',
 #             "username":'',
 #             "password":''
 #         },
