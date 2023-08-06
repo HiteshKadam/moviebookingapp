@@ -22,9 +22,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-n*tz23sp*dq-co-n#kfv@+q107sd$0@9bb7bv08dm_+10etps!'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -81,19 +81,25 @@ WSGI_APPLICATION = 'moviebookingapp.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'djongo',
+#         'NAME': 'moviesdb',
+#         "CLIENT": {
+#             # "host": 'mongo',
+#             "host": 'mongodb://localhost:27017',
+#             "username":'',
+#             "password":''
+#         },
+#     }
+# }
+
 DATABASES = {
     'default': {
-        'ENGINE': 'djongo',
-        'NAME': 'moviesdb',
-        "CLIENT": {
-            "host": 'mongo',
-            # "host": 'mongodb://localhost:27017',
-            "username":'',
-            "password":''
-        },
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
