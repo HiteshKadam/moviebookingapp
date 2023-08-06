@@ -87,6 +87,7 @@ DATABASES = {
         'NAME': 'moviesdb',
         "CLIENT": {
             "host": 'mongo',
+            # "host": 'mongodb://localhost:27017',
             "username":'',
             "password":''
         },
