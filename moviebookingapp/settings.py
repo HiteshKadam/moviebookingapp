@@ -30,12 +30,14 @@ CORS_ORIGIN_ALLOW_ALL = False
 CORS_ALLOW_CREDENTIALS = True
 CORS_ORIGIN_WHITELIST = [
     'http://localhost:3000',
-    'http://192.168.1.208:3000'
+    'http://192.168.1.208:3000',
+    'http://18.233.153.210:3000'
 ]
 
 CORS_ORIGIN_REGEX_WHITELIST = [
     'http://localhost:3000',
-    'http://192.168.1.208:3000'
+    'http://192.168.1.208:3000',
+    'http://18.233.153.210:3000'
 ]
 
 # Application definition
