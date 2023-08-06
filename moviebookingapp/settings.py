@@ -24,8 +24,17 @@ SECRET_KEY = 'django-insecure-n*tz23sp*dq-co-n#kfv@+q107sd$0@9bb7bv08dm_+10etps!
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['54.221.6.173','127.0.0.1','localhost','0.0.0.0']
 
+CORS_ORIGIN_ALLOW_ALL = False
+CORS_ALLOW_CREDENTIALS = True
+CORS_ORIGIN_WHITELIST = [
+    'http://localhost:3000',
+]
+
+CORS_ORIGIN_REGEX_WHITELIST = [
+    'http://localhost:3000',
+]
 
 # Application definition
 
@@ -185,8 +194,7 @@ SWAGGER_SETTINGS = {
 # }
 
 
-CORS_ORIGIN_ALLOW_ALL = True
-CORS_ALLOW_CREDENTIALS = True
+
 
 # Add the DRF authentication and permission classes
 REST_FRAMEWORK = {
@@ -201,10 +209,6 @@ REST_FRAMEWORK = {
 
 # Add the following configuration for static and media files
 STATIC_URL = '/static/'
-
-CORS_ALLOWED_ORIGINS = [
-    'http://localhost:3000',
-]
 
 
 # Set the session cookie age to 1 hour (in seconds)
